@@ -1,0 +1,58 @@
+CREATE
+DATABASES DBMS;
+use DBMS;
+
+CREATE TABLE Student
+(
+    Sid CHAR(10) PRIMARY KEY,
+    Sname CHAR(10),
+    Sgrade INT,
+    Sclass SMALLINT,
+    Smajor CHAR(10),
+    Ssex BOOLEAN
+);
+
+CREATE TABLE TEACHER
+(
+    Tid CHAR(10) PRIMARY KEY,
+   
+    Tname CHAR(10),
+    Tdep CHAR(10)
+);
+
+CREATE TABLE Course
+(
+    Cid CHAR(10),
+
+    Cno CHAR(10),
+    Cname CHAR(10),
+    Cscore SMALLINT ,
+    PRIMARY KEY (Cid,Cno)
+  
+);
+
+
+
+CREATE TABLE TC
+(
+    Tid CHAR(10) ,
+   
+    Cid CHAR(10),
+    Cno CHAR(10),
+    PRIMARY KEY (Tid,Cid,Cno)
+);
+ALTER TABLE TC ADD FOREIGN KEY (Tid) REFERENCES TEACHER(Tid);
+ALTER TABLE TC ADD FOREIGN KEY (Cid) REFERENCES Course(Cid);
+   
+
+
+CREATE TABLE SC
+(
+    Sid CHAR(10),
+    Cid CHAR(10),
+    Cno CHAR(10),
+    Scj SMALLINT,
+    PRIMARY KEY (Sid,Cid,Cno)
+);
+ALTER TABLE SC ADD FOREIGN KEY (Sid) REFERENCES Student(Sid);
+ALTER TABLE SC ADD FOREIGN KEY (Cid) REFERENCES Course(Cid);
